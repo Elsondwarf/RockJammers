@@ -4,17 +4,19 @@ using UnityEngine.Serialization;
 
 public class ParticleSpawner : MonoBehaviour
 {
-    [FormerlySerializedAs("spawnForce")] [Header("Spawn Settings")]
+    [Header("Spawn Settings")]
     public Vector2 spawnDirection;
     public float spawnForce;
     public float forceMagnitudeClamp;
-    [SerializeField] private GameObject particlePrefab;
+    [SerializeField] private GameObject _particlePrefab;
+    
+    [Header("Pooling Library")]
+    [SerializeField] private ObjectPooling _objectPooling; 
     
     [Header("Test Settings")]
-    [SerializeField] private bool IsTest;
-    [SerializeField] private int maxParticles;
-    [SerializeField] private int batchSize;
-    [SerializeField] private int currentParticles;
+    [SerializeField] private bool _IsTest;
+    [SerializeField] private int _maxParticles;
+    [Range(1,10)][SerializeField] private int _batchSize;
 
     /// <summary>
     /// SpawnParticle will spawn a game object, and launch it with AddForce in a direction (spawnVector) at a speed (spawnVelocity).
@@ -26,18 +28,33 @@ public class ParticleSpawner : MonoBehaviour
     /// <param name="vectorClampForce">The maximum force that will act on the particle (recommended to set this the same as spawnVelocity)</param>
     public void SpawnParticle(GameObject particle, Vector2 spawnVector, float spawnVelocity, float vectorClampForce)
     {
-        GameObject go = Instantiate(particle);
+        //GameObject go = Instantiate(particle);
+        GameObject go = _objectPooling.GetPooledObject();
+        go.SetActive(true);
+        _objectPooling.activeObjects.Add(go);
+        go.transform.position = transform.position;
         go.GetComponent<Rigidbody2D>().AddForce((Vector2)transform.position + Vector2.ClampMagnitude(spawnVector * spawnVelocity, vectorClampForce));
     }
-
+    
+    /// <summary>
+    /// Overload of SpawnParticle, that requires no arguments and instead instanciates default values as set in the script object. 
+    /// </summary>
+    public void SpawnParticle()
+    {
+        //GameObject go = Instantiate(_particlePrefab);
+        GameObject go = _objectPooling.GetPooledObject();
+        go.SetActive(true);
+        go.transform.position = transform.position;
+        go.GetComponent<Rigidbody2D>().AddForce((Vector2)transform.position + Vector2.ClampMagnitude(spawnDirection * spawnForce, forceMagnitudeClamp));
+    }
+    
     private void Update()
     {
-        if (currentParticles < maxParticles && IsTest)
+        if (_objectPooling.activeObjects.Count < _maxParticles && _IsTest)
         {
-            for (int i = 0; i < batchSize; i++)
+            for (int i = 0; i < _batchSize; i++)
             {
-                SpawnParticle(particlePrefab, spawnDirection, spawnForce, forceMagnitudeClamp);
-                currentParticles++;
+                SpawnParticle(_particlePrefab, spawnDirection, spawnForce, forceMagnitudeClamp);
             }
         }
     }

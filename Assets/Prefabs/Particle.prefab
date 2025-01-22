@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7487066447110648441}
   - component: {fileID: 929979573024991599}
   - component: {fileID: 5622630898203799488}
+  - component: {fileID: -7667014608534680373}
   m_Layer: 20
   m_Name: Particle
   m_TagString: Untagged
@@ -29,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.65, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -78,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2317347361708544087, guid: af7df5962ebc11f4bb1511fb12a5f390, type: 3}
+  m_Sprite: {fileID: -4193136632826136995, guid: e239a8478340af74c98c8f74034d14cd, type: 3}
   m_Color: {r: 0.21537916, g: 0.526165, b: 0.8301887, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -152,3 +153,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-7667014608534680373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6510539561492679340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc206a33985ddba4997428550c77e5cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxLifeTime: 2
+  objectPooling: {fileID: 0}
