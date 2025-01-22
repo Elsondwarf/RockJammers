@@ -97,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        //playerAir.ChangeAirAmount(-5);
+        playerAir.ChangeAirAmount(-5);
 
         rb.AddRelativeForce(new Vector2(0f,-1f) * forceMultipler);
         StartCoroutine(ShowAir());

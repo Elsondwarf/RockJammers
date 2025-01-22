@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        
         if (instance == null)
         {
             instance = this;
@@ -46,6 +47,7 @@ public class GameManager : MonoBehaviour
                 {
                     player.transform.position = doorways[i].spawnLocation.position;
                     player.GetComponent<PlayerAir>().currentAir = data.GetPlayerAir();
+                    player.GetComponent<PlayerAir>().UpdateUI();
                     break;
                 }
             }
