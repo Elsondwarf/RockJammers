@@ -12,9 +12,9 @@ public class PlayerAir : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //airSlider.maxValue = maxAir;
-        //UpdateUI();
+        airSlider.maxValue = maxAir;
         //currentAir = maxAir;
+        UpdateUI();
     }
 
     // Update is called once per frame

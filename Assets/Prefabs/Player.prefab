@@ -107,7 +107,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  forceMultipler: 10
+  isInstance: 0
+  forceMultipler: 2
   air: {fileID: 7378764438990632114}
 --- !u!50 &7862531677944364739
 Rigidbody2D:
@@ -211,6 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d1cdff450e95714da9dece89bac2b96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentAir: 0
   airSlider: {fileID: 0}
   sliderImage: {fileID: 0}
 --- !u!1 &6717520153934647914
