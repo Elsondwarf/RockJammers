@@ -6,20 +6,20 @@ using UnityEngine;
 
 public static class SaveSystem
 {
-    public static void SaveRoomBubbles(List<BubbleSaveData> saveData,int sceneID)
+    public static void SaveRoomBubbles(BubbleSaveData[] saveData,int sceneID)
     {
         BinaryFormatter formatter = new BinaryFormatter();
 
         string path = Application.persistentDataPath + "/Bubble" + sceneID.ToString() + ".save";
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        List<BubbleSaveData> data = saveData;
+        BubbleSaveData[] data = saveData;
 
         formatter.Serialize(stream, data);
         stream.Close();
     }
 
-    public static List<BubbleSaveData> LoadRoomBubble(int sceneID)
+    public static BubbleSaveData[] LoadRoomBubble(int sceneID)
     {
         string path = Application.persistentDataPath + "/Bubble" + sceneID.ToString() + ".save";
         if (File.Exists(path))
@@ -27,7 +27,7 @@ public static class SaveSystem
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);
 
-            List<BubbleSaveData> data = formatter.Deserialize(stream) as List<BubbleSaveData>;
+            BubbleSaveData[] data = formatter.Deserialize(stream) as BubbleSaveData[];
             stream.Close();
 
             return data;
@@ -35,7 +35,7 @@ public static class SaveSystem
         else
         {
             //Debug.LogError("Path not found : " + path);
-            return new List<BubbleSaveData>();
+            return new BubbleSaveData[1];
         }
     }
 

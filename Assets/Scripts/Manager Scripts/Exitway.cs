@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Exitway : MonoBehaviour
@@ -8,17 +9,8 @@ public class Exitway : MonoBehaviour
     public int doorNumber;
     [Tooltip("The location where the player spawns when entering from this hallway")]
     public Transform spawnLocation;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -30,6 +22,12 @@ public class Exitway : MonoBehaviour
         //BubbleManager.SaveRoom();
         SaveData data = new SaveData(air.transform.position, air.currentAir, doorNumber);
         SaveSystem.SaveRoom(data);
+
+        List<GameObject> pooled = BubbleManager.GetAllActivePooledBubble();
+
+        BubbleManager.SaveBubbles(pooled.ToArray());
+
         GameManager.LoadNewArea(connectingRoom);
+
     }
 }

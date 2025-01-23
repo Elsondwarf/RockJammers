@@ -8,6 +8,7 @@ public class PlayerAir : MonoBehaviour
     [SerializeField] public Slider airSlider;
     [SerializeField] public Image sliderImage;
     [SerializeField] public readonly float maxAir = 100;
+    [SerializeField] private float airReduceAmount = 3f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,7 +21,7 @@ public class PlayerAir : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        ChangeAirAmount(-airReduceAmount * Time.deltaTime);
     }
 
     public void UpdateUI()

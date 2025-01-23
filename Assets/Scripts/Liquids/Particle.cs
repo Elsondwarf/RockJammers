@@ -106,6 +106,7 @@ public class Particle : MonoBehaviour
         {
             _foreignParticles.Add(otherParticle);
         }
+        
     }
 
     private void OnTriggerExit2D(Collider2D other)

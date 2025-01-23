@@ -5,9 +5,8 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     public PlayerControls inputs;
-    public float speed = 10;
+    public float rotationSpeed = 10;
     public static PlayerMovement instance;
-    public bool isInstance = false;
 
     private Vector2 controllerLook;
     private Rigidbody2D rb => GetComponent<Rigidbody2D>();
@@ -21,8 +20,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private GameObject air;
     [SerializeField] private float airUseSpeed = 0.05f;
+    [SerializeField] private ParticleSpawner spawner;
+    [SerializeField] private AudioSource movingAudio;
+    [SerializeField] private AudioSource collisionAudio;
 
-    private float maxVelocity;
 
     //private Vector2 mousePosition;
 
@@ -34,12 +35,6 @@ public class PlayerMovement : MonoBehaviour
             instance = this;
             //isInstance = true;
         }
-        else
-        {
-            //Destroy(gameObject);
-        }
-
-        //DontDestroyOnLoad(gameObject);
 
         inputs = new PlayerControls();
         //mousePosition = inputs.Gameplay.Look.ReadValue<Vector2>();
@@ -47,8 +42,10 @@ public class PlayerMovement : MonoBehaviour
         inputs.Gameplay.Look.canceled += ctx => controllerLook = Vector2.zero;
         inputs.Gameplay.Propel.performed += ctx => moveinput = ctx.ReadValue<float>();// Propel(ctx);
         inputs.Gameplay.Propel.canceled += ctx => air.SetActive(false); 
-        inputs.Gameplay.Propel.canceled += ctx => moveinput = 0f; 
+        inputs.Gameplay.Propel.canceled += ctx => moveinput = 0f;
 
+        inputs.UI.Pause.performed += ctx => PauseMenu.instance.PauseGame();
+        inputs.UI.Back.performed += ctx => PauseMenu.instance.BackButtonPressed();
 
     }
 
@@ -92,31 +89,7 @@ public class PlayerMovement : MonoBehaviour
         targetRotation.x = 0f;
         targetRotation.y = 0f;
 
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, speed * 100 * Time.deltaTime);
-    }
-
-    private void Propel(InputAction.CallbackContext contex)
-    {
-        if (playerAir.GetCurrentAir() <= 0)
-        {
-            //play a pathetic air particle and a sad sound
-            return;
-        }
-
-        float inputMultipler = contex.ReadValue<float>();
-
-        Debug.Log(contex.ReadValue<float>());
-
-        playerAir.ChangeAirAmount(-5);
-
-        Vector2 v = new Vector2(0f, -1f) * forceMultipler * inputMultipler;
-
-        rb.AddRelativeForce(v);
-
-
-
-        air.SetActive(true);
-        //StartCoroutine(ShowAir());
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * 100 * Time.deltaTime);
     }
 
     private void Propel()
@@ -125,20 +98,21 @@ public class PlayerMovement : MonoBehaviour
             return;
 
 
-
         if (playerAir.GetCurrentAir() <= 0)
         {
             //play a pathetic air particle and a sad sound
             return;
         }
 
+        //AUDIO SOUCE
+        //movingAudio.Play();
 
         playerAir.ChangeAirAmount(-airUseSpeed);
 
         rb.AddRelativeForce(new Vector2(0f,-1f) * forceMultipler * moveinput);
+        spawner.SpawnParticle(transform.up, forceMultipler * moveinput * 100);
 
         air.SetActive(true);
-        //StartCoroutine(ShowAir());
     }
 
     private IEnumerator ShowAir()
@@ -148,4 +122,14 @@ public class PlayerMovement : MonoBehaviour
         air.SetActive(false);
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Border")
+        {
+            //AUDIO SOURCE
+            //collisionAudio.Play();
+
+        }
+
+    }
 }

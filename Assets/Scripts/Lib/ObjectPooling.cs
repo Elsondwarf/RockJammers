@@ -9,7 +9,9 @@ public class ObjectPooling : MonoBehaviour
     public GameObject objectToPool;
     public int poolSize;
 
-    private void Start()
+    [SerializeField] private Transform pooledObjectsParent;
+
+    private void Awake()
     {
         pooledObjects = new List<GameObject>();
         activeObjects = new List<GameObject>();
@@ -20,8 +22,12 @@ public class ObjectPooling : MonoBehaviour
             obj = Instantiate(objectToPool);
             obj.SetActive(false);
             obj.GetComponent<Particle>().objectPooling = this;
+            obj.transform.parent = pooledObjectsParent;
             pooledObjects.Add(obj);
         }
+
+        pooledObjectsParent = GameManager.instance.transform.GetChild(0);
+        
     }
 
     public GameObject GetPooledObject()
@@ -33,7 +39,7 @@ public class ObjectPooling : MonoBehaviour
                 return pooledObjects[i];
             }
         }
-
+        Debug.LogWarning("No more objects in hierachy");
         return null;
     }
 }

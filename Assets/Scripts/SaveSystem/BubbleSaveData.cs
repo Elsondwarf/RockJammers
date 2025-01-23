@@ -3,30 +3,30 @@ using UnityEngine;
 [System.Serializable]
 public class BubbleSaveData
 {
-    private float x;
-    private float y;
+    public float x;
+    public float y;
 
-    private Bubble type;
+    //public  Bubble type;
 
     public BubbleSaveData()
     {
         x = 0;
         y = 0;
-        type = new Bubble();
+        //type = new Bubble();
     }
 
     public BubbleSaveData(Vector2 position, Bubble bubble)
     {
         x = position.x;
         y = position.y;
-        type = bubble;
+        //type = bubble;
     }
 
     public BubbleSaveData(BubbleSaveData data)
     {
         x = data.x;
         y = data.y;
-        type = data.type;
+        //type = data.type;
     }
 
     public Vector2 GetPosition()
@@ -34,9 +34,9 @@ public class BubbleSaveData
         return new Vector2(x, y);
     }
 
-    public Bubble GetBubble()
-    {
-        return type;
-    }
+    //public Bubble GetBubble()
+    //{
+        //return type;
+    //}
 
 }

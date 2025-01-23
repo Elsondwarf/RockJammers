@@ -5,9 +5,6 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public Slider slider;
-    public Image image;
-
     public static GameManager instance;
 
 
@@ -15,11 +12,13 @@ public class GameManager : MonoBehaviour
     private readonly string exitScene = "Exit Scene";
     private readonly string enterNewScene = "New Scene";
 
+    [Tooltip("This is the panel in the canvas")]
     [SerializeField] private Animator screenTransitionAnimator;
     [SerializeField] private GameObject player;
-    [SerializeField] private CameraController cameraController;
+    [Tooltip("Only tick if its in the first scene and it avoids loading checks")]
     [SerializeField] private bool firstRoom;
     [SerializeField] private Exitway[] doorways;
+    [SerializeField] private AudioSource changeSceneAudio;
 
 
     private void Awake()
@@ -32,7 +31,6 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
-            //Destroy(screenTransitionAnimator.gameObject.transform.parent.gameObject);
         }
 
 
@@ -71,18 +69,10 @@ public class GameManager : MonoBehaviour
         //}
     }
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         screenTransitionAnimator.SetTrigger(enterNewScene);
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
 
@@ -91,22 +81,25 @@ public class GameManager : MonoBehaviour
         instance.StartCoroutine(instance.ScreenTransitionAnimation(sceneID));
     }
 
-    private void ChangeTimeScale(float timeCheck, float falseTime, float trueTime = 1f)
-    {
-        Time.timeScale = timeCheck == 0 ? trueTime : falseTime;
-    }
-
     private IEnumerator ScreenTransitionAnimation(int sceneID)
     {
         while (true)
         {
-            ChangeTimeScale(1f, 1f);
-
+            //AUDIO SOURCE
+            //if(!changeSceneAudio.isPlaying)
+            //    changeSceneAudio.Play();
             screenTransitionAnimator.SetTrigger(exitScene);
             yield return waitTime;
 
             SceneManager.LoadScene(sceneID);
 
         }
+    }
+
+    public static int GetCurrentSceneID()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+
+        return scene.buildIndex;
     }
 }

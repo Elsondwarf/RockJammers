@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class Bubble : MonoBehaviour
 {
     public Color bubbleColour;
-    public bool canShrink = false;
+    public bool canShrink = true;
 
     protected string playerTag = "Player";
     protected bool playerInBubble = false;
@@ -13,25 +13,81 @@ public class Bubble : MonoBehaviour
 
     [SerializeField]
     private SpriteRenderer bubbleSprite;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    [SerializeField] private AudioSource dissapearingAudio;
+
+
     void Start()
     {
         bubbleSprite.color = bubbleColour;
         //BubbleManager.AddBubble(this);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
 
-    public void OnTriggerEnter2D(Collider2D other)
+
+    #region OnTriggerCode - Not Needed Anymore
+    //public void OnTriggerEnter2D(Collider2D other)
+    //{
+    //    if (other.gameObject.tag != playerTag)
+    //        return;
+
+    //    PlayerMovement player = other.gameObject.GetComponent<PlayerMovement>();
+
+    //    if (player == null)
+    //        return;
+
+    //    playerInBubble = true;
+    //    BubbleInteract(player.gameObject);
+
+    //    if(canShrink)
+    //        StartCoroutine(BubbleTime(player.gameObject));
+
+        //AUDIO SOURCE HERE
+        //dissapearingAudio.Play();
+    //}
+
+    //private void OnTriggerStay2D(Collider2D other)
+    //{
+    //    if (other.gameObject.tag != playerTag)
+    //        return;
+
+    //    PlayerMovement player = other.gameObject.GetComponent<PlayerMovement>();
+
+    //    if (player == null)
+    //        return;
+
+    //    if (canShrink)
+    //        StartCoroutine(BubbleTime(other.gameObject));
+    //}
+
+
+    //public void OnTriggerExit2D(Collider2D other)
+    //{
+    //    if (other.gameObject.tag != playerTag)
+    //        return;
+
+    //    PlayerMovement player = other.gameObject.GetComponent<PlayerMovement>();
+
+    //    if (player == null)
+    //        return;
+
+    //    playerInBubble = false;
+
+    //AUDIO SOURCE STOP
+    //dissapearingAudio.Stop();
+    //}
+
+    #endregion
+
+
+    #region OnCollision Code
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (other.gameObject.tag != playerTag)
+        if (collision.gameObject.tag != playerTag)
             return;
 
-        PlayerMovement player = other.gameObject.GetComponent<PlayerMovement>();
+        PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
 
         if (player == null)
             return;
@@ -39,37 +95,35 @@ public class Bubble : MonoBehaviour
         playerInBubble = true;
         BubbleInteract(player.gameObject);
 
-        if(canShrink)
-            StartCoroutine(BubbleTime(player.gameObject));
-    }
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.gameObject.tag != playerTag)
-            return;
-
-        PlayerMovement player = other.gameObject.GetComponent<PlayerMovement>();
-
-        if (player == null)
-            return;
-
         if (canShrink)
-            StartCoroutine(BubbleTime(other.gameObject));
+            StartCoroutine(BubbleTime(player.gameObject));
+
+        //AUDIO SOURCE HERE
+        //dissapearingAudio.Play();
+
     }
 
 
-    public void OnTriggerExit2D(Collider2D other)
+    private void OnCollisionExit2D(Collision2D collision)
     {
-        if (other.gameObject.tag != playerTag)
+        if (collision.gameObject.tag != playerTag)
             return;
 
-        PlayerMovement player = other.gameObject.GetComponent<PlayerMovement>();
+        PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
 
         if (player == null)
             return;
- 
+
         playerInBubble = false;
+
+
+        //AUDIO SOURCE STOP
+        //dissapearingAudio.Stop();
     }
+
+    #endregion
+
+
 
     protected virtual void BubbleInteract()
     {
