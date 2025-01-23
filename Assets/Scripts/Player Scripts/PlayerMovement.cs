@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     private float forceMultipler = 1f;
     [SerializeField]
     private GameObject air;
+    [SerializeField] private float airUseSpeed = 0.05f;
 
     private float maxVelocity;
 
@@ -132,7 +133,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        //playerAir.ChangeAirAmount(-5);
+        playerAir.ChangeAirAmount(-airUseSpeed);
 
         rb.AddRelativeForce(new Vector2(0f,-1f) * forceMultipler * moveinput);
 
