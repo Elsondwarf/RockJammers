@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d22d723d7bb38a846ac57713f3904917
+guid: 09bd8897bbfd48b4db5397733b3556c6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 199249360466117110
-    second: Floor_0
+      213: -2942020376952146925
+    second: Pipe Corner 2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Floor_0
+      name: Pipe Corner 2_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 678
-        height: 532
+        x: 44
+        y: 80
+        width: 1396
+        height: 1360
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6f18e48dc30e3c200800000000000000
-      internalID: 199249360466117110
+      spriteID: 3147ecdfd08db27d0800000000000000
+      internalID: -2942020376952146925
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Floor_0: 199249360466117110
+      Pipe Corner 2_0: -2942020376952146925
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

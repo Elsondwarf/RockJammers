@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d22d723d7bb38a846ac57713f3904917
+guid: 185e2c8584a7c764e9b514094cb0064d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 199249360466117110
-    second: Floor_0
+      213: -2893909101930992719
+    second: Pipe Open 2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Floor_0
+      name: Pipe Open 2_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 678
-        height: 532
+        width: 531
+        height: 1413
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 48}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6f18e48dc30e3c200800000000000000
-      internalID: 199249360466117110
+      spriteID: 1bb222f1105c6d7d0800000000000000
+      internalID: -2893909101930992719
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 9b865ddba758da04e844ce636bbcfa50
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Floor_0: 199249360466117110
+      Pipe Open 2_0: -2893909101930992719
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
