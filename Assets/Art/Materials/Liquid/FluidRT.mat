@@ -76,6 +76,8 @@ Material:
     - _AlphaToMask: 0
     - _Blend: 0
     - _BlendOp: 0
+    - _ColorStep: 0.2
+    - _ColourThickness: 100
     - _Cull: 2
     - _Cutoff: 0.5
     - _DstBlend: 10
@@ -87,6 +89,7 @@ Material:
     - _SrcBlend: 5
     - _SrcBlendAlpha: 1
     - _Surface: 1
+    - _Thicknes2: 0.9
     - _Thickness: 0.35
     - _ZWrite: 0
     m_Colors:

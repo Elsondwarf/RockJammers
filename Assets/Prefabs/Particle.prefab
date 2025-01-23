@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 929979573024991599}
   - component: {fileID: 5622630898203799488}
   - component: {fileID: -7667014608534680373}
+  - component: {fileID: 1302864999941945984}
   m_Layer: 20
   m_Name: Particle
   m_TagString: Untagged
@@ -58,7 +59,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -88,7 +89,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!58 &929979573024991599
 CircleCollider2D:
@@ -141,7 +142,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0
-  m_GravityScale: 3
+  m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: ddf08c4ab19ed3a4ba984ee153abb8e3, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -165,5 +166,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc206a33985ddba4997428550c77e5cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tag: 0
+  attenuationRadius: 2.5
+  attractionForce: 0.2
+  cohesionForce: 2
+  foreignRepulsionForce: 2
+  _triggerCollider: {fileID: 1302864999941945984}
+  _rigidbody: {fileID: 5622630898203799488}
+  _particles: []
+  _foreignParticles: []
+  _rigidbodies: []
   maxLifeTime: 2
+  isDesawnable: 0
   objectPooling: {fileID: 0}
+--- !u!58 &1302864999941945984
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6510539561492679340}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 5

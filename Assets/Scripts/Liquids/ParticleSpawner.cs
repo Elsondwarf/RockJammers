@@ -17,6 +17,8 @@ public class ParticleSpawner : MonoBehaviour
     [SerializeField] private bool _IsTest;
     [SerializeField] private int _maxParticles;
     [Range(1,10)][SerializeField] private int _batchSize;
+    [SerializeField] private float _timeBetweenSpawns;
+    private float _spawnTimer;
 
     /// <summary>
     /// SpawnParticle will spawn a game object, and launch it with AddForce in a direction (spawnVector) at a speed (spawnVelocity).
@@ -50,13 +52,15 @@ public class ParticleSpawner : MonoBehaviour
     
     private void Update()
     {
-        if (_objectPooling.activeObjects.Count < _maxParticles && _IsTest)
+        if (_objectPooling.activeObjects.Count < _maxParticles && _IsTest && _spawnTimer > _timeBetweenSpawns)
         {
             for (int i = 0; i < _batchSize; i++)
             {
                 SpawnParticle(_particlePrefab, spawnDirection, spawnForce, forceMagnitudeClamp);
+                _spawnTimer = 0f;
             }
         }
+        _spawnTimer += Time.deltaTime;
     }
 
     private void OnDrawGizmos()
