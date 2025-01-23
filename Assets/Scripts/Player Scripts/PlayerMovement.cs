@@ -1,36 +1,52 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
     public PlayerControls inputs;
     public float speed = 10;
-    public Slider airSlider;
+    public static PlayerMovement instance;
+    public bool isInstance = false;
 
     private Vector2 controllerLook;
     private Rigidbody2D rb => GetComponent<Rigidbody2D>();
-    private float currentAir;
-    private readonly float maxAir = 10;
-    
+
+    private PlayerAir playerAir => GetComponent<PlayerAir>();
+
+    private float moveinput;
 
     [SerializeField]
     private float forceMultipler = 1f;
     [SerializeField]
     private GameObject air;
-    [SerializeField]
-    private Image sliderImage;
+
+    private float maxVelocity;
+
     //private Vector2 mousePosition;
 
     private void Awake()
     {
+
+        if(instance == null)
+        {
+            instance = this;
+            //isInstance = true;
+        }
+        else
+        {
+            //Destroy(gameObject);
+        }
+
+        //DontDestroyOnLoad(gameObject);
+
         inputs = new PlayerControls();
         //mousePosition = inputs.Gameplay.Look.ReadValue<Vector2>();
         inputs.Gameplay.Look.performed += ctx => controllerLook = ctx.ReadValue<Vector2>();
         inputs.Gameplay.Look.canceled += ctx => controllerLook = Vector2.zero;
-        inputs.Gameplay.Propel.performed += ctx => Propel(ctx);
-
+        inputs.Gameplay.Propel.performed += ctx => moveinput = ctx.ReadValue<float>();// Propel(ctx);
+        inputs.Gameplay.Propel.canceled += ctx => air.SetActive(false); 
+        inputs.Gameplay.Propel.canceled += ctx => moveinput = 0f; 
 
 
     }
@@ -47,15 +63,14 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        UpdateUI();
-        currentAir = maxAir;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        UpdateUI();
         Rotate();
+        Propel();
     }
 
     private void Rotate()
@@ -81,23 +96,48 @@ public class PlayerMovement : MonoBehaviour
 
     private void Propel(InputAction.CallbackContext contex)
     {
-        if (currentAir <= 0)
+        if (playerAir.GetCurrentAir() <= 0)
         {
             //play a pathetic air particle and a sad sound
             return;
         }
 
-        currentAir--;
-        UpdateUI();
+        float inputMultipler = contex.ReadValue<float>();
 
-        rb.AddRelativeForce(new Vector2(0f,-1f) * forceMultipler);
-        StartCoroutine(ShowAir());
+        Debug.Log(contex.ReadValue<float>());
+
+        playerAir.ChangeAirAmount(-5);
+
+        Vector2 v = new Vector2(0f, -1f) * forceMultipler * inputMultipler;
+
+        rb.AddRelativeForce(v);
+
+
+
+        air.SetActive(true);
+        //StartCoroutine(ShowAir());
     }
 
-    private void UpdateUI()
+    private void Propel()
     {
-        airSlider.value = currentAir;
-        sliderImage.color = Color.LerpUnclamped(Color.red, Color.blue, currentAir);
+        if (moveinput == 0)
+            return;
+
+
+
+        if (playerAir.GetCurrentAir() <= 0)
+        {
+            //play a pathetic air particle and a sad sound
+            return;
+        }
+
+
+        //playerAir.ChangeAirAmount(-5);
+
+        rb.AddRelativeForce(new Vector2(0f,-1f) * forceMultipler * moveinput);
+
+        air.SetActive(true);
+        //StartCoroutine(ShowAir());
     }
 
     private IEnumerator ShowAir()
@@ -107,14 +147,4 @@ public class PlayerMovement : MonoBehaviour
         air.SetActive(false);
     }
 
-    public void ChangeAirAmount(float amount)
-    {
-        currentAir += amount;
-
-        if (currentAir > maxAir)
-            currentAir = maxAir;
-
-        if (currentAir <= 0)
-            currentAir = 0;
-    }
 }

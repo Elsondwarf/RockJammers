@@ -5,8 +5,11 @@ using UnityEngine.UI;
 public class Bubble : MonoBehaviour
 {
     public Color bubbleColour;
+    public bool canShrink = false;
+
     protected string playerTag = "Player";
     protected bool playerInBubble = false;
+    [SerializeField] protected float bubbleSrinkSpeed = 1.1f;
 
     [SerializeField]
     private SpriteRenderer bubbleSprite;
@@ -14,12 +17,13 @@ public class Bubble : MonoBehaviour
     void Start()
     {
         bubbleSprite.color = bubbleColour;
+        //BubbleManager.AddBubble(this);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void OnTriggerEnter2D(Collider2D other)
@@ -32,10 +36,25 @@ public class Bubble : MonoBehaviour
         if (player == null)
             return;
 
-        BubbleInteract(player);
-
-        StartCoroutine(BubbleTime(player));
         playerInBubble = true;
+        BubbleInteract(player.gameObject);
+
+        if(canShrink)
+            StartCoroutine(BubbleTime(player.gameObject));
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.tag != playerTag)
+            return;
+
+        PlayerMovement player = other.gameObject.GetComponent<PlayerMovement>();
+
+        if (player == null)
+            return;
+
+        if (canShrink)
+            StartCoroutine(BubbleTime(other.gameObject));
     }
 
 
@@ -48,8 +67,7 @@ public class Bubble : MonoBehaviour
 
         if (player == null)
             return;
-
-        StopCoroutine(BubbleTime(player));
+ 
         playerInBubble = false;
     }
 
@@ -58,18 +76,28 @@ public class Bubble : MonoBehaviour
 
     }
 
-    protected virtual void BubbleInteract(PlayerMovement player)
+    protected virtual void BubbleInteract(GameObject player)
     {
 
     }
 
-    protected virtual IEnumerator BubbleTime(PlayerMovement player)
+    protected IEnumerator BubbleTime(GameObject player)
     {
-        while (transform.localScale.x > 0.5f)
+        PlayerAir air = player.GetComponent<PlayerAir>();
+
+        while (playerInBubble && transform.localScale.x > 0.01f)
         {
-            //BubbleInteract();
-            //transform.localScale /= 1.1f;
+            if (air.GetCurrentAir() >= air.maxAir)
+                break;
+            Vector3 currentScale = transform.localScale;
+            Vector3 newScale = transform.localScale / bubbleSrinkSpeed;
+
+            transform.localScale = Vector3.Lerp(currentScale, newScale, bubbleSrinkSpeed * Time.deltaTime);
+            BubbleInteract(player);
             yield return null;
         }
+
+        if (transform.localScale.x <= 0.01f)
+            Destroy(gameObject);
     }
 }
