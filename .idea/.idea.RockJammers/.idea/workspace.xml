@@ -6,20 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="6aec5781-c828-4877-aff5-2966ac258b78" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.RockJammers/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RockJammers/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Builds/Desktop/Master.strings.bank" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Builds/Desktop/Master.strings.bank" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Builds/Desktop/SFX.bank" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Builds/Desktop/SFX.bank" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/FMOD/Resources/FMODStudioSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/FMOD/Resources/FMODStudioSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Important Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Important Prefabs/Player.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Systems.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Systems.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/PauseMenu.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/PauseMenu.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Start Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Start Scene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Testing Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Testing Scene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Audio/AudioManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Audio/AudioManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Audio/FMODEvents.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Audio/FMODEvents.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Bubble Scripts/AirBubble.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Bubble Scripts/AirBubble.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player Scripts/PlayerMainMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player Scripts/PlayerMainMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player Scripts/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player Scripts/PlayerMovement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI Scripts/PauseMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI Scripts/PauseMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Builds/Desktop/Soundtrack.bank" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Builds/Desktop/Soundtrack.bank" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Particle Air.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Particle Air.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Level1.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Liquids/ParticleSpawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Liquids/ParticleSpawner.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

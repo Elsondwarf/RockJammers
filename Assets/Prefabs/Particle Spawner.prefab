@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4398072655134672782
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8938991204507309229}
+  - component: {fileID: 4016458914878189652}
+  - component: {fileID: 5599709688054732269}
+  m_Layer: 0
+  m_Name: Particle Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8938991204507309229
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4398072655134672782}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.5, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4016458914878189652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4398072655134672782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba3ce2dc3ba0e184f996ae0aa4ef0341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnDirection: {x: 1, y: -0.3}
+  spawnForce: 50
+  forceMagnitudeClamp: 500
+  _particlePrefab: {fileID: 0}
+  _objectPooling: {fileID: 5599709688054732269}
+  _IsTest: 1
+  _maxParticles: 100
+  _batchSize: 3
+  _timeBetweenSpawns: 0.1
+  scale: 1
+  angleRange: 2
+  option: 1
+--- !u!114 &5599709688054732269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4398072655134672782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23124468c25845548bc41257fcee1627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledObjects: []
+  activeObjects: []
+  objectToPool: {fileID: 6510539561492679340, guid: 3a9d38e2e1e88434787b39501bf419d8, type: 3}
+  poolSize: 1000
+  pooledObjectsParent: {fileID: 0}

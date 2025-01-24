@@ -35,11 +35,13 @@ public class ParticleSpawner : MonoBehaviour
     /// <param name="spawnVector">The direction in which the particle will travel</param>
     /// <param name="spawnVelocity">The force which the direction is multiplied by</param>
     /// <param name="vectorClampForce">The maximum force that will act on the particle (recommended to set this the same as spawnVelocity)</param>
-    public void SpawnParticle(GameObject prefag, Vector2 spawnVector, float spawnVelocity, float vectorClampForce)
+    public void SpawnParticle(GameObject particle, Vector2 spawnVector, float spawnVelocity, float vectorClampForce)
     {
+        Debug.Log("Spawning particle");
         //GameObject go = Instantiate(particle);
         GameObject go = _objectPooling.GetPooledObject();
         if (go == null)
+            Debug.Log("Object pooling is empty");
             return;
         go.SetActive(true);
 
@@ -49,7 +51,7 @@ public class ParticleSpawner : MonoBehaviour
         if(option)
             go.GetComponent<Rigidbody2D>().AddRelativeForce(-transform.right * spawnVelocity);
         else
-        go.GetComponent<Rigidbody2D>().AddForce((Vector2)transform.position + Vector2.ClampMagnitude(spawnVector * spawnVelocity, vectorClampForce));
+            go.GetComponent<Rigidbody2D>().AddForce((Vector2)transform.position + Vector2.ClampMagnitude(spawnVector * spawnVelocity, vectorClampForce));
 
     }
     
