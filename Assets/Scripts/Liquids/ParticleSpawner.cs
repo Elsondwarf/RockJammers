@@ -41,8 +41,10 @@ public class ParticleSpawner : MonoBehaviour
         //GameObject go = Instantiate(particle);
         GameObject go = _objectPooling.GetPooledObject();
         if (go == null)
+        {
             Debug.Log("Object pooling is empty");
             return;
+        }
         go.SetActive(true);
 
         _objectPooling.activeObjects.Add(go);
@@ -77,6 +79,22 @@ public class ParticleSpawner : MonoBehaviour
             }
         }
         _spawnTimer += Time.deltaTime;
+    }
+    
+    private void Update()
+    {
+        if (_objectPooling.activeObjects.Count < _maxParticles && _IsTest && _spawnTimer > _timeBetweenSpawns)
+        {
+            for (int i = 0; i < _batchSize; i++)
+            {
+                SpawnParticle(_particlePrefab, spawnDirection, spawnForce, forceMagnitudeClamp);
+                _spawnTimer = 0f;
+            }
+        }
+        if (_IsTest)
+        {
+            _spawnTimer += Time.deltaTime;
+        }
     }
 
 

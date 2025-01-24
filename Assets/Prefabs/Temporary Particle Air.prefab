@@ -230,7 +230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bubbleColour: {r: 1, g: 1, b: 1, a: 1}
   canShrink: 0
-  bubbleSrinkSpeed: 1.1
+  bubbleSrinkSpeed: 10
   bubbleSprite: {fileID: 4093793231494363994}
   dissapearingAudio: {fileID: 0}
-  airIntakeSpee: 5
+  airIntakeSpee: 20

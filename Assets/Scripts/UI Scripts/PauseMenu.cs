@@ -106,6 +106,7 @@ public class PauseMenu : MonoBehaviour
         AudioManager.Instance.PlayOneShot(FMODEvents.Instance.exitSceneSound, transform.position);
         AudioManager.Instance.SetMusicSoundtrack(MusicEnum.GAME_SOUNDTRACK);
         GameManager.LoadNewArea(1);
+        pauseObject.SetActive(isPaused);
     }
 
     public void Quit()

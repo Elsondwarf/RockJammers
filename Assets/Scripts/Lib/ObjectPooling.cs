@@ -26,7 +26,7 @@ public class ObjectPooling : MonoBehaviour
             pooledObjects.Add(obj);
         }
 
-        pooledObjectsParent = GameManager.instance.transform.GetChild(0);
+        //pooledObjectsParent = GameManager.instance.transform.GetChild(0);
         
     }
 
