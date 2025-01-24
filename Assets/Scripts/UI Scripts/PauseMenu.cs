@@ -17,7 +17,6 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private Sprite defaultSprite;
     [SerializeField] private EventSystem eventSystem;
     [SerializeField] private GameObject[] firstButtonSelect;
-    [SerializeField] private AudioSource hoverSource;
 
     private void Awake()
     {
@@ -69,9 +68,7 @@ public class PauseMenu : MonoBehaviour
 
             pauseTypeCanvas[i].SetActive(false);
         }
-
-
-
+        
         StartCoroutine(HighlightButton(index));
         pauseTypeCanvas[index].SetActive(true);
         lastMenuOpened = index;
@@ -95,7 +92,7 @@ public class PauseMenu : MonoBehaviour
     {
         image.sprite = hoverSprite;
         //AUDIO SOURCE
-        hoverSource.Play();
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.buttonHover, transform.position);
     }
 
     public void LeftHover(Image image)
@@ -106,11 +103,14 @@ public class PauseMenu : MonoBehaviour
 
     public void NewGame()
     {
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.exitSceneSound, transform.position);
+        AudioManager.Instance.SetMusicSoundtrack(MusicEnum.GAME_SOUNDTRACK);
         GameManager.LoadNewArea(1);
     }
 
     public void Quit()
     {
+        AudioManager.Instance.PlayOneShot(FMODEvents.Instance.exitSceneSound, transform.position);
         Application.Quit();
     }
 

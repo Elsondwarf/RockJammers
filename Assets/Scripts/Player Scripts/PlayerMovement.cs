@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using FMOD.Studio;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -23,6 +25,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private ParticleSpawner spawner;
     [SerializeField] private AudioSource movingAudio;
     [SerializeField] private AudioSource collisionAudio;
+    
+    // Audio
+    private EventInstance thrustInstance;
+    private EventInstance noThrustInstance;
+    private bool isThrusting = false;
 
 
     //private Vector2 mousePosition;
@@ -59,16 +66,19 @@ public class PlayerMovement : MonoBehaviour
         inputs.Disable();
     }
 
-    void Start()
+    private void Start()
     {
-
+        thrustInstance = AudioManager.Instance.CreateEventInstance(FMODEvents.Instance.thrustSound);
+        noThrustInstance = AudioManager.Instance.CreateEventInstance(FMODEvents.Instance.noThrustSound);
     }
 
     // Update is called once per frame
     void Update()
     {
         Rotate();
+        isThrusting = false;
         Propel();
+        UpdateSound();
     }
 
     private void Rotate()
@@ -100,12 +110,16 @@ public class PlayerMovement : MonoBehaviour
 
         if (playerAir.GetCurrentAir() <= 0)
         {
+            noThrustInstance.getPlaybackState(out var state);
+            if (state.Equals(PLAYBACK_STATE.STOPPED))
+            {
+                noThrustInstance.start();
+            }
             //play a pathetic air particle and a sad sound
             return;
         }
-
-        //AUDIO SOUCE
-        //movingAudio.Play();
+        
+        isThrusting = true;
 
         playerAir.ChangeAirAmount(-airUseSpeed);
 
@@ -113,6 +127,23 @@ public class PlayerMovement : MonoBehaviour
         spawner.SpawnParticle(transform.up, forceMultipler * moveinput * 100);
 
         air.SetActive(true);
+    }
+
+    private void UpdateSound()
+    {
+        if (isThrusting)
+        {
+            thrustInstance.getPlaybackState(out PLAYBACK_STATE playbackState);
+
+            if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+            {
+                thrustInstance.start();
+            }
+        }
+        else
+        {
+            thrustInstance.stop(STOP_MODE.ALLOWFADEOUT);
+        }
     }
 
     private IEnumerator ShowAir()
@@ -126,6 +157,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Border")
         {
+            AudioManager.Instance.PlayOneShot(FMODEvents.Instance.thudSound, transform.position);
             //AUDIO SOURCE
             //collisionAudio.Play();
 

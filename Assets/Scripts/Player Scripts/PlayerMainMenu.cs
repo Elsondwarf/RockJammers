@@ -81,7 +81,7 @@ public class PlayerMainMenu : MonoBehaviour
 
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, speed * 100 * Time.deltaTime);
 
-        Debug.Log(mp);
+        //Debug.Log(mp);
 
         spawner.SpawnParticle(Vector3.right, forceMultipler);
 
@@ -91,9 +91,6 @@ public class PlayerMainMenu : MonoBehaviour
     {
 
         rb.AddRelativeForce(new Vector2(0f, -1f) * forceMultipler);
-
-        //AUDIO SORCE
-        audioSource.Play();
 
         air.SetActive(true);
         //StartCoroutine(ShowAir());

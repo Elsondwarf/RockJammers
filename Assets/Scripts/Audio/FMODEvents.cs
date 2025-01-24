@@ -12,20 +12,25 @@ public class FMODEvents : MonoBehaviour
     [field: Header("Thrust Sound")]
     [field: SerializeField] public EventReference thrustSound { get; private set; }
     
+    [field: Header("No Thrust Sound")]
+    [field: SerializeField] public EventReference noThrustSound { get; private set; }
+    
     [field: Header("Pickup Sound")]
     [field: SerializeField] public EventReference pickupSound { get; private set; }
     
     [field: Header("Exit Scene")]
-    [field: SerializeField] public EventReference exitScene { get; private set; }
+    [field: SerializeField] public EventReference exitSceneSound { get; private set; }
+    [field: Header("Thud Sound")]
+    [field: SerializeField] public EventReference thudSound { get; private set; }
     
 
     public static FMODEvents Instance { get; private set; }
 
     private void Awake()
     {
-        if (Instance == null)
+        if (Instance != null)
         {
-            Debug.LogError("More then one instance of AudioManager!");
+            Debug.LogError("More then one instance of FMODEvents!");
         }
         Instance = this;
     }

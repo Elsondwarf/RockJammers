@@ -874,7 +874,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1640745280143550751
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1524,7 +1524,6 @@ MonoBehaviour:
   firstButtonSelect:
   - {fileID: 3399268946137773328}
   - {fileID: 6003759329108745829}
-  hoverSource: {fileID: 0}
 --- !u!1 &8273774920095670612
 GameObject:
   m_ObjectHideFlags: 0

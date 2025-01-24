@@ -109,6 +109,13 @@ MonoBehaviour:
       Data3: -434371927
       Data4: -1154555617
     Path: event:/Thrust
+  <noThrustSound>k__BackingField:
+    Guid:
+      Data1: -968945526
+      Data2: 1272144016
+      Data3: 1438590344
+      Data4: -907401311
+    Path: event:/NoThrust
   <pickupSound>k__BackingField:
     Guid:
       Data1: -1788876294
@@ -116,13 +123,20 @@ MonoBehaviour:
       Data3: -1074518133
       Data4: -320479647
     Path: event:/PickUp
-  <exitScene>k__BackingField:
+  <exitSceneSound>k__BackingField:
     Guid:
       Data1: -1182974684
       Data2: 1107545917
       Data3: -627006801
       Data4: 504433201
     Path: event:/ExitArea
+  <thudSound>k__BackingField:
+    Guid:
+      Data1: 82430514
+      Data2: 1180513306
+      Data3: 128108173
+      Data4: 2075049225
+    Path: event:/Collision
 --- !u!1 &7196165481989919038
 GameObject:
   m_ObjectHideFlags: 0

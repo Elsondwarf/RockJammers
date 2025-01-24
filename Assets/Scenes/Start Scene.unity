@@ -429,6 +429,7 @@ MonoBehaviour:
   activeObjects: []
   objectToPool: {fileID: 6510539561492679340, guid: 3a9d38e2e1e88434787b39501bf419d8, type: 3}
   poolSize: 1000
+  pooledObjectsParent: {fileID: 0}
 --- !u!114 &167651681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -503,6 +504,7 @@ MonoBehaviour:
   activeObjects: []
   objectToPool: {fileID: 6510539561492679340, guid: 3a9d38e2e1e88434787b39501bf419d8, type: 3}
   poolSize: 35
+  pooledObjectsParent: {fileID: 0}
 --- !u!114 &237943222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1198,8 +1200,8 @@ Transform:
   m_GameObject: {fileID: 749050254}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.37, y: 10.24, z: 0}
-  m_LocalScale: {x: 0.56457484, y: 0.5486577, z: 0.19566}
+  m_LocalPosition: {x: 10.05, y: 22.73, z: 0}
+  m_LocalScale: {x: 2.885489, y: 2.804138, z: 0.19566}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1702566442}
@@ -2072,7 +2074,7 @@ Transform:
   m_GameObject: {fileID: 1220835275}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.05, y: 18.2, z: -0.09601644}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2526,6 +2528,7 @@ MonoBehaviour:
   activeObjects: []
   objectToPool: {fileID: 6510539561492679340, guid: 3a9d38e2e1e88434787b39501bf419d8, type: 3}
   poolSize: 35
+  pooledObjectsParent: {fileID: 0}
 --- !u!114 &1332518618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2579,14 +2582,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22d21478ef513db478b2b225b4b96c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 0}
-  image: {fileID: 0}
   screenTransitionAnimator: {fileID: 1996701499}
   player: {fileID: 4696886342812984116, guid: cae667e1dfdc5ae478a789b05494102e, type: 3}
-  cameraController: {fileID: 0}
   firstRoom: 1
   doorways:
   - {fileID: 0}
+  changeSceneAudio: {fileID: 0}
 --- !u!4 &1354226098
 Transform:
   m_ObjectHideFlags: 0
@@ -3389,6 +3390,7 @@ MonoBehaviour:
   activeObjects: []
   objectToPool: {fileID: 6510539561492679340, guid: 3a9d38e2e1e88434787b39501bf419d8, type: 3}
   poolSize: 1000
+  pooledObjectsParent: {fileID: 0}
 --- !u!114 &1789642306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3774,8 +3776,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2088349907}
   - component: {fileID: 2088349906}
-  - component: {fileID: 2088349905}
   - component: {fileID: 2088349904}
+  - component: {fileID: 2088349908}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3827,14 +3829,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!81 &2088349905
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2088349902}
-  m_Enabled: 1
 --- !u!20 &2088349906
 Camera:
   m_ObjectHideFlags: 0
@@ -3901,6 +3895,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2088349908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2088349902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 0}
 --- !u!1 &2126735273
 GameObject:
   m_ObjectHideFlags: 0
@@ -4344,6 +4352,7 @@ MonoBehaviour:
   forceMultipler: 2
   air: {fileID: 7378764438605578506}
   spawner: {fileID: 1332518618}
+  audioSource: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
